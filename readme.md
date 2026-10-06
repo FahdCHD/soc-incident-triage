@@ -1,9 +1,5 @@
 # 🛡️ Automated SOC Alert Triage & Incident Reporting System
 
-[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
-[![Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-brightgreen?style=flat-square)]()
-[![Code Style: PEP8](https://img.shields.io/badge/Code%20Style-PEP8-blue?style=flat-square)]()
 
 A **Master's-level cybersecurity project** that automates alert triage, threat intelligence enrichment, and executive incident report generation for Security Operations Centers (SOCs).
 
