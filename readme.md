@@ -108,7 +108,6 @@ This is a **portfolio-ready project** that showcases Python automation, API inte
 | **HTTP Client** | `requests` | API communication |
 | **Config** | `python-dotenv` | Environment variable management |
 | **PDF** | `fpdf2` | Executive report generation |
-| **Version Control** | Git & GitHub | Portfolio & collaboration |
 
 ---
 
