@@ -1,0 +1,16 @@
+# Database & Generated Files
+*.db
+*.sqlite3
+*.pdf
+
+# Credentials & Cache
+.env
+config.ini
+secrets.py
+__pycache__/
+*.pyc
+
+# System Files
+.vscode/
+.idea/
+.DS_Store
