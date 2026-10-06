@@ -58,12 +58,12 @@ This is a **portfolio-ready project** that showcases Python automation, API inte
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │          Threat Intelligence Enrichment (AbuseIPDB API)         │
-│    (Reputation Score, Country, ISP, Abuse Confidence %)        │
+│    (Reputation Score, Country, ISP, Abuse Confidence %)         │
 └────────────────────────────┬────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│            Automated Triage & Rule Evaluation                    │
+│            Automated Triage & Rule Evaluation                   │
 │      (Filter Noise, Categorize Risk, Assign Priority)           │
 └────────────────────────────┬────────────────────────────────────┘
                              │
@@ -480,96 +480,3 @@ pip install -r requirements.txt
 rm -f soc_alerts.db
 python main.py  # Will recreate DB
 ```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. **Fork** this repository
-2. **Create a feature branch**: `git checkout -b feature/your-feature`
-3. **Commit changes**: `git commit -m "Add your feature"`
-4. **Push to branch**: `git push origin feature/your-feature`
-5. **Open a Pull Request** with a clear description
-
-### Code Style
-- Follow **PEP 8** conventions
-- Add docstrings to all functions
-- Use type hints where applicable
-- Keep functions under 50 lines
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
-
----
-
-## 📞 Support & Questions
-
-- **Issues**: Open a GitHub issue with details
-- **Email**: your.email@example.com
-- **Documentation**: See [docs/](docs/) folder for detailed guides
-
----
-
-## 🎓 Educational Value
-
-This project demonstrates:
-
-- ✅ **SIEM Integration**: Alert ingestion from enterprise security tools
-- ✅ **API Integration**: Third-party threat intelligence consumption
-- ✅ **Automation**: Reducing manual SOC workload via Python
-- ✅ **Database Design**: Normalized schema for security event storage
-- ✅ **Report Generation**: Professional executive communication
-- ✅ **DevSecOps**: Secure configuration management, version control
-- ✅ **Cybersecurity**: Threat classification, risk prioritization, incident response
-
-**Perfect for:**
-- 🎯 Master's-level capstone projects
-- 📚 Cybersecurity portfolio demonstrations
-- 💼 Entry-level SOC analyst interviews
-- 🔬 Security automation research
-
----
-
-## 🚀 Roadmap
-
-- [ ] Web UI dashboard for real-time alert visualization
-- [ ] Machine learning-based anomaly detection for triage
-- [ ] Slack/Email integration for instant alerts
-- [ ] Multi-SIEM support (Splunk, ELK, Microsoft Sentinel)
-- [ ] MITRE ATT&CK framework mapping
-- [ ] Compliance reporting (PCI DSS, HIPAA, SOC 2)
-
----
-
-**Last Updated**: October 2026  
-**Version**: 1.0.0  
-**Status**: ✅ Active Development
-
----
-
-<div align="center">
-
-### ⭐ If this project helped you, consider giving it a star! ⭐
-
-[🔝 Back to Top](#-automated-soc-alert-triage--incident-reporting-system)
-
-</div>
