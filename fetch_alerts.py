@@ -1,5 +1,6 @@
 import os
 import json
+import ipaddress
 import requests
 from dotenv import load_dotenv
 
@@ -8,9 +9,30 @@ load_dotenv()
 ABUSE_API_KEY = os.getenv("ABUSEIPDB_API_KEY")
 ALERTS_LOG_PATH = "alerts.json"
 
+
+def is_internal_ip(ip):
+    """
+    Returns True if the IP is missing, invalid, or not publicly routable.
+    Uses Python's built-in 'ipaddress' module, which correctly covers:
+      - RFC 1918 private ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+      - Loopback (127.0.0.0/8, ::1)
+      - Link-local (169.254.0.0/16, fe80::/10)
+      - IPv6 private ranges (fc00::/7)
+    """
+    if not ip or ip == "N/A":
+        return True
+    try:
+        addr = ipaddress.ip_address(ip)
+    except ValueError:
+        # Not a valid IP string, so never send it to the external API
+        return True
+    return addr.is_private or addr.is_loopback or addr.is_link_local
+
+
 def check_abuseipdb(ip):
     """Enriches public IP addresses with AbuseIPDB threat intelligence."""
-    if not ip or ip.startswith(("127.", "10.", "192.168.", "172.16.")) or ip == "N/A":
+    # Skip internal/non-routable IPs to save API quota and avoid pointless lookups
+    if is_internal_ip(ip):
         return {
             "status": "Internal / RFC1918 Address",
             "abuse_score": "0%",
@@ -50,8 +72,9 @@ def check_abuseipdb(ip):
             }
     except Exception as e:
         return {"error": str(e), "abuse_score": "N/A", "country": "N/A", "isp": "N/A"}
-    
+
     return {"status": "Lookup Failed", "abuse_score": "N/A", "country": "N/A", "isp": "N/A"}
+
 
 def fetch_live_wazuh_alerts(min_level=5):
     live_alerts = []
@@ -66,7 +89,7 @@ def fetch_live_wazuh_alerts(min_level=5):
                     continue
                 alert = json.loads(line.strip())
                 rule_level = alert.get("rule", {}).get("level", 0)
-                
+
                 if rule_level >= min_level:
                     src_ip = alert.get("data", {}).get("srcip") or alert.get("srcip", "N/A")
                     extracted_alert = {
@@ -81,8 +104,9 @@ def fetch_live_wazuh_alerts(min_level=5):
                     live_alerts.append(extracted_alert)
     except Exception as e:
         print(f"[-] Error parsing Wazuh log file: {e}")
-        
+
     return live_alerts
+
 
 def enrich_and_save():
     print(f"[*] Reading live Wazuh alerts from {ALERTS_LOG_PATH}...")
@@ -113,6 +137,7 @@ def enrich_and_save():
         json.dump(enriched_list, f, indent=4)
 
     print(f"[+] Successfully saved {len(enriched_list)} enriched alerts to '{output_file}'.")
+
 
 if __name__ == "__main__":
     enrich_and_save()
